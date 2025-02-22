@@ -8,9 +8,9 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div className="space-y-3">
-            <h3 className="text-lg font-semibold">Cryst0</h3>
+            <h3 className="text-lg font-semibold">About Us</h3>
             <p className="text-sm text-muted-foreground">
-            <img src="./public/teallogo.png">
+              We provide real-time cryptocurrency and stock market data, helping you make informed investment decisions.
             </p>
           </div>
           <div className="space-y-3">
@@ -30,7 +30,8 @@ export function Footer() {
           <div className="space-y-3">
             <h3 className="text-lg font-semibold">Contact</h3>
             <p className="text-sm text-muted-foreground">
-              Email: ihackathon2025@gmail.com<br />
+              Email: support@cryptomarket.com<br />
+              Available 24/7
             </p>
             <div className="flex justify-center gap-4 mt-2">
               <a
@@ -68,7 +69,7 @@ export function Footer() {
         </div>
         <div className="mt-8 pt-8 border-t border-border/40">
           <p className="text-center text-sm text-muted-foreground">
-            Made with ❤️ by Team Vendetta
+            Made By Team Vendetta
           </p>
         </div>
       </div>
