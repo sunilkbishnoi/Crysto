@@ -9,6 +9,10 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div className="space-y-3">
             <h3 className="text-lg font-semibold">About Us</h3>
+            <div className="text-sm text-muted-foreground">
+  <img src="/teallogo.png" alt="Logo" />
+</div>
+
             <p className="text-sm text-muted-foreground">
               We provide real-time cryptocurrency and stock market data, helping you make informed investment decisions.
             </p>
