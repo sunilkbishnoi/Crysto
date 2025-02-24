@@ -10,7 +10,7 @@ export function Footer() {
           <div className="space-y-3">
             <h3 className="text-lg font-semibold">About Us</h3>
             <div className="text-sm text-muted-foreground">
-  <img src="/logo3.png" alt="Logo" />
+  <img src="/teallogo.png" alt="Logo" />
 </div>
 
             <p className="text-sm text-muted-foreground">
