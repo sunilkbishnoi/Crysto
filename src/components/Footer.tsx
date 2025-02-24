@@ -9,6 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div className="space-y-3">
             <h3 className="text-lg font-semibold">About Us</h3>
+            <img src="./logo3.png" alt="Description of image" width="500" height="600">
             <div className="text-sm text-muted-foreground">
   <img src="/teallogo.png" alt="Logo" />
 </div>
