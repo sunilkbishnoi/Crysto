@@ -1,6 +1,9 @@
+
 import { ArrowDown, ArrowUp, Heart, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 import { useMarketStore } from "@/stores/marketStore";
+import { formatCurrency, formatMarketCap } from "@/utils/formatters";
+
 interface CryptoCardProps {
   symbol: string;
   name: string;
@@ -11,7 +14,9 @@ interface CryptoCardProps {
   isLoading?: boolean;
   isFavorite?: boolean;
   onFavoriteClick?: (e: React.MouseEvent) => void;
+  animationDelay?: number;
 }
+
 export function CryptoCard({
   symbol,
   name,
@@ -21,18 +26,11 @@ export function CryptoCard({
   onClick,
   isLoading = false,
   isFavorite = false,
-  onFavoriteClick
+  onFavoriteClick,
+  animationDelay = 0
 }: CryptoCardProps) {
-  const {
-    currency
-  } = useMarketStore();
-  const formatNumber = (num: number) => {
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: currency,
-      maximumFractionDigits: 2
-    }).format(currency === 'USD' ? num : num * 83.12); // Using approximate INR-USD conversion rate
-  };
+  const { currency } = useMarketStore();
+  
   if (isLoading) {
     return <div className="p-6 rounded-xl border border-border/50 bg-card/50 shadow-[0_8px_16px_rgb(0_0_0/0.1)] backdrop-blur-sm animate-pulse">
         <div className="flex justify-between items-start mb-4">
@@ -48,7 +46,15 @@ export function CryptoCard({
         </div>
       </div>;
   }
-  return <div className="relative p-6 rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all cursor-pointer shadow-[0_8px_16px_rgb(0_0_0/0.1)]" onClick={onClick}>
+  
+  return <div 
+    className="relative p-6 rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all cursor-pointer shadow-[0_8px_16px_rgb(0_0_0/0.1)] hover:shadow-[6px_6px_16px_rgb(0_0_0/0.35)] hover:-translate-y-1 transform transition-transform duration-300 animate-fade-in dark:hover:bg-card/70 dark:hover:border-border/60 dark:hover:shadow-[6px_6px_16px_rgba(255,255,255,0.07)]" 
+    onClick={onClick}
+    style={{ 
+      animationDelay: `${animationDelay}s`,
+      animationFillMode: 'both'
+    }}
+  >
       <div className="flex justify-between items-start mb-4">
         <div>
           <h3 className="text-lg font-bold">{symbol.toUpperCase()}</h3>
@@ -65,14 +71,14 @@ export function CryptoCard({
         </div>
       </div>
       <div className="space-y-2">
-        <p className="text-2xl font-bold">{formatNumber(price)}</p>
+        <p className="text-2xl font-bold">{formatCurrency(price, currency)}</p>
         <div className="flex justify-between items-center">
           <div className={`flex items-center ${change >= 0 ? "text-green-500" : "text-red-500"}`}>
             {change >= 0 ? <ArrowUp className="w-4 h-4" /> : <ArrowDown className="w-4 h-4" />}
             <span className="ml-1">{Math.abs(change).toFixed(2)}%</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            MCap: {formatNumber(marketCap)}
+            MCap: {formatMarketCap(marketCap, currency)}
           </p>
         </div>
       </div>

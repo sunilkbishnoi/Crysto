@@ -5,20 +5,13 @@ import { useMarketData, useStockData } from "@/services/cryptoApi";
 import { useMarketStore } from "@/stores/marketStore";
 import { useToast } from "@/components/ui/use-toast";
 import { Heart, ArrowUp, ArrowDown } from "lucide-react";
+import { formatCurrency, formatMarketCap, CURRENCY_CONVERSION_RATE } from "@/utils/formatters";
 
 export default function Favorites() {
   const { favorites, removeFavorite, currency } = useMarketStore();
   const { data: cryptoData, isLoading: cryptoLoading } = useMarketData();
   const { data: stockData, isLoading: stockLoading } = useStockData();
   const { toast } = useToast();
-
-  const formatNumber = (num: number) => {
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: currency,
-      maximumFractionDigits: 2,
-    }).format(num);
-  };
 
   const favoriteItems = [
     ...(cryptoData?.filter((crypto) => favorites.includes(crypto.id)) || []),
@@ -37,8 +30,13 @@ export default function Favorites() {
       <Navbar />
       <main className="flex-1 container mx-auto px-4 py-8">
         <header className="mb-8">
-          <h1 className="text-3xl font-bold">Your Favorites</h1>
-          <p className="text-muted-foreground mt-2">
+          <div className="relative">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary/90 to-primary/50 text-primary-foreground py-2 px-6 transform skew-x-12 inline-block shadow-[3px_3px_0px_rgb(0_0_0/0.3)]">
+              <span className="transform -skew-x-12 inline-block">Your Favorites</span>
+            </h1>
+            <div className="absolute -bottom-2 right-0 w-12 h-1 bg-primary/70 transform skew-x-12"></div>
+          </div>
+          <p className="text-muted-foreground mt-5">
             Track your favorite cryptocurrencies and stocks
           </p>
         </header>
@@ -71,14 +69,14 @@ export default function Favorites() {
                   </button>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-2xl font-bold">{formatNumber(item.current_price)}</p>
+                  <p className="text-2xl font-bold">{formatCurrency(item.current_price, currency)}</p>
                   <div className="flex justify-between items-center">
                     <div className={`flex items-center ${item.price_change_percentage_24h >= 0 ? "text-green-500" : "text-red-500"}`}>
                       {item.price_change_percentage_24h >= 0 ? <ArrowUp className="w-4 h-4" /> : <ArrowDown className="w-4 h-4" />}
                       <span className="ml-1">{Math.abs(item.price_change_percentage_24h).toFixed(2)}%</span>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      MCap: {formatNumber(item.market_cap)}
+                      MCap: {formatMarketCap(item.market_cap, currency)}
                     </p>
                   </div>
                 </div>

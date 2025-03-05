@@ -9,7 +9,7 @@ export const useMarketData = () => {
   const { currency } = useMarketStore();
   return useQuery({
     queryKey: ["marketData", currency],
-    queryFn: () => fetchMarketData(currency),
+    queryFn: () => fetchMarketData(currency.toLowerCase()),
     refetchInterval: 10000,
     staleTime: 5000,
     retry: 1,
@@ -20,7 +20,7 @@ export const useStockData = () => {
   const { currency } = useMarketStore();
   return useQuery({
     queryKey: ["stockData", currency],
-    queryFn: () => fetchStockData(currency),
+    queryFn: () => fetchStockData(currency.toLowerCase()),
     refetchInterval: 10000,
     staleTime: 5000,
     retry: 1,

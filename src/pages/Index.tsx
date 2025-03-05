@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CryptoDetail } from "@/components/CryptoDetail";
@@ -22,7 +22,12 @@ const Index = () => {
   const { data: cryptoData, isLoading: cryptoLoading } = useMarketData();
   const { data: stockData, isLoading: stockLoading } = useStockData();
   const { toast } = useToast();
-  const { currency, setCurrency } = useMarketStore();
+  const { currency, setCurrency, activeTab } = useMarketStore();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleAIAnalysis = (type: 'technical' | 'sentiment' | 'prediction' | 'crypto' | 'stock', symbol: string) => {
     toast({
@@ -67,7 +72,7 @@ const Index = () => {
             onBack={() => setSelectedStock(null)}
           />
         ) : (
-          <MarketTabs defaultValue="crypto">
+          <MarketTabs>
             <TabsContent value="crypto" className="mt-0">
               <MarketsList
                 cryptoData={cryptoData}

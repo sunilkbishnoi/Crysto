@@ -16,14 +16,14 @@ export const INDIAN_STOCKS = [
 ];
 
 export const CRYPTO_PAIRS = [
-  { symbol: 'BITCOINUSD', displaySymbol: 'BTC', name: 'Bitcoin' },
-  { symbol: 'ETHUSD', displaySymbol: 'ETH', name: 'Ethereum' },
-  { symbol: 'BNBUSD', displaySymbol: 'BNB', name: 'Binance Coin' },
+  { symbol: 'BTCUSDT', displaySymbol: 'BTC', name: 'Bitcoin' },
+  { symbol: 'ETHUSDT', displaySymbol: 'ETH', name: 'Ethereum' },
+  { symbol: 'BNBUSDT', displaySymbol: 'BNB', name: 'Binance Coin' },
   { symbol: 'XRPUSDT', displaySymbol: 'XRP', name: 'Ripple' },
-  { symbol: 'SOLUSD', displaySymbol: 'SOL', name: 'Solana' },
-  { symbol: 'ADAUSDC', displaySymbol: 'ADA', name: 'Cardano' },
-  { symbol: 'DOTUSDC', displaySymbol: 'DOT', name: 'Polkadot' },
+  { symbol: 'SOLUSDT', displaySymbol: 'SOL', name: 'Solana' },
+  { symbol: 'ADAUSDT', displaySymbol: 'ADA', name: 'Cardano' },
+  { symbol: 'DOTUSDT', displaySymbol: 'DOT', name: 'Polkadot' },
   { symbol: 'MATICUSDT', displaySymbol: 'MATIC', name: 'Polygon' },
-  { symbol: 'NEARUSD', displaySymbol: 'DOGE', name: 'Dogecoin' },
-  { symbol: 'LINKUSD', displaySymbol: 'SHIB', name: 'Shiba Inu' }
+  { symbol: 'DOGEUSDT', displaySymbol: 'DOGE', name: 'Dogecoin' },
+  { symbol: 'SHIBUSDT', displaySymbol: 'SHIB', name: 'Shiba Inu' }
 ];

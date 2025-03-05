@@ -47,8 +47,13 @@ export default function News() {
       <Navbar />
       <main className="flex-1 container mx-auto px-4 py-8">
         <header className="mb-8">
-          <h1 className="text-3xl font-bold">Market News</h1>
-          <p className="text-muted-foreground mt-2">
+          <div className="relative">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary/90 to-primary/50 text-primary-foreground py-2 px-6 transform skew-x-12 inline-block shadow-[3px_3px_0px_rgb(0_0_0/0.3)]">
+              <span className="transform -skew-x-12 inline-block">Market News</span>
+            </h1>
+            <div className="absolute -bottom-2 right-0 w-12 h-1 bg-primary/70 transform skew-x-12"></div>
+          </div>
+          <p className="text-muted-foreground mt-5">
             Stay updated with the latest market news and trends
           </p>
         </header>

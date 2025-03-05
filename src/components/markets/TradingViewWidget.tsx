@@ -29,9 +29,10 @@ export function TradingViewWidget({ symbol, isStock = false }: TradingViewWidget
         // For Indian stocks, use BSE format
         return `BSE:${symbol}`;
       } else {
-        // For crypto, use Coinbase format which has reliable free data
-        const cleanSymbol = symbol.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
-        return `${cleanSymbol}`;
+        // For crypto, just use the clean symbol without prefixes or suffixes
+        return symbol.toUpperCase()
+          .replace(/USDT$|USD$|BTC$/i, '') // Remove common trading pairs
+          .replace(/[^A-Z]/g, ''); // Remove any non-letter characters
       }
     };
 

@@ -19,7 +19,10 @@ export function MarketOverviewCard({
   isIncrease 
 }: MarketOverviewCardProps) {
   return (
-    <Card className="hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:bg-card/80">
+    <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:bg-card/80 border-l-4 border-l-primary/70 h-full">
+      <div className="absolute right-0 top-0 h-20 w-20 opacity-10 -mt-4 -mr-4">
+        <Icon className="h-full w-full" />
+      </div>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-xl font-bold text-primary">
           {title}

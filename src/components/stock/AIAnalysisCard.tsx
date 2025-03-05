@@ -22,30 +22,38 @@ export function AIAnalysisCard({
   const { toast } = useToast();
 
   const handleDownload = () => {
-    const pdf = generateAnalysisPDF(symbol, analysisResult);
-    pdf.save(`${symbol}_analysis.pdf`);
-    
-    toast({
-      title: "Success",
-      description: "Analysis report downloaded successfully",
-    });
+    try {
+      const pdf = generateAnalysisPDF(symbol, analysisResult);
+      pdf.save(`${symbol}_analysis.pdf`);
+      
+      toast({
+        title: "Success",
+        description: "Analysis report downloaded successfully",
+      });
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      toast({
+        title: "Error",
+        description: "Failed to generate PDF. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const formatAnalysisText = (text: string) => {
-    // Replace **text** with <strong>text</strong>
     return text.split('**').map((part, index) => 
-      index % 2 === 1 ? <strong key={index}>{part}</strong> : part
+      index % 2 === 1 ? <strong key={index} className="font-bold">{part}</strong> : part
     );
   };
 
   return (
-    <div className="flex flex-col items-center max-w-2xl mx-auto">
+    <div className="flex flex-col items-center w-full mx-auto">
       <Button 
-        className="w-full" 
+        className="w-full py-6 text-lg" 
         onClick={onAnalyze}
         disabled={isLoading}
       >
-        <Sparkles className="w-4 h-4 mr-2" />
+        <Sparkles className="w-5 h-5 mr-2" />
         {isLoading ? "Generating Analysis..." : "Generate AI Analysis"}
       </Button>
 
@@ -55,7 +63,7 @@ export function AIAnalysisCard({
             <CardTitle className="text-lg font-medium text-center">AI Analysis Results</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="whitespace-pre-wrap break-words text-center">
+            <div className="whitespace-pre-wrap break-words">
               {formatAnalysisText(analysisResult)}
             </div>
             <Alert className="mb-4">
@@ -66,7 +74,7 @@ export function AIAnalysisCard({
             </Alert>
             <Button 
               onClick={handleDownload}
-              className="w-full gap-2"
+              className="w-full gap-2 py-5 neo-brutal-shadow hover:bg-primary hover:text-primary-foreground transition-all duration-200"
               variant="outline"
             >
               <Download className="h-4 w-4" />

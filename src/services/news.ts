@@ -44,13 +44,16 @@ export const fetchMarketNews = async (): Promise<NewsItem[]> => {
       thumbnail: item.imageurl,
     }));
 
-    const stockNews = generateMockStockNews(4);
+    // Limit stock news to 2 items since we have 6 crypto news
+    const stockNews = generateMockStockNews(2);
 
-    return [...cryptoNews, ...stockNews].sort((a, b) => 
-      new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
-    );
+    // Return the combined array limited to 6 items total
+    return [...cryptoNews, ...stockNews]
+      .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
+      .slice(0, 6);
   } catch (error) {
     console.error('Error fetching news:', error);
     return [];
   }
 };
+
