@@ -11,6 +11,7 @@ interface CryptoPriceChartProps {
   isLoading: boolean;
 }
 
+
 export function CryptoPriceChart({
   chartData,
   formatDate,
